@@ -27,3 +27,9 @@
 *.exe
 *.out
 *.app
+# Code::Blocks-generated stuff
+bin/
+obj/
+*.depend
+*.layout
+*.cbp

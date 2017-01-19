@@ -1,0 +1,13 @@
+- Czy mierzyc czasy po srednich czasach wykonania dla kazdej dlugosci instancji problemu, czy po maksymalnych? *tak
+- Czy generowac oddzielnie ekstremalne instancje problemu?
+- Bez tajemnic uzytkowych - co to znaczy?
+- Jak zrealizowac wykresy? *odchylenie standardowe
+- Czy mierzyc w milisekundach? *duże przypadkiem
+- Jak sporzadzic dokumentacje? *opis problemu, opis algorytmu, opis programu, ocena złożoności, generacja przypadków testowych wykresy, wnioski
+- O co chodzi z "podpisem" w komentarzu naglowkowym i z samym komentarzem naglowkowym? *nie, kod ma nie wymagac komentarzy
+- Jak zrealizowac parametryzacje wywolania?
+- Czy naprawde robic PIG jako oddzielny program? *nie musi
+- Wspomnieć o moich perypetiach z wynalezionym przeze mnie algorytmem i przypadkiem, ktory go zajezdza.
+- Zapytac o mozliwosc pisania inzynierki.
+* Kod do refaktoryzacji.
+*prof. Kryszkiewicz
