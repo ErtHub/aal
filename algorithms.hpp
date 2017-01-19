@@ -1,4 +1,6 @@
-#pragma once
+#ifndef ALGORITHMS_HPP
+#define ALGORITHMS_HPP
+
 #include <map>
 #include <unordered_map>
 #include <vector>
@@ -121,3 +123,5 @@ bool recurMemSearch(std::vector<int>& stones)
 }//end of namespace
 
 std::map<char, bool(*)(std::vector<int>&)> algs={{'D', &revSearch}, {'I', &iterMemSearch}, {'R', &recurMemSearch}};
+
+#endif

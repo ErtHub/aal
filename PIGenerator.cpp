@@ -98,3 +98,35 @@ vector<int> PIGenerator::generatePI(bool solution, int length)
     }
     return to_return;
 }
+
+vector<int> PIGenerator::createExtremeCase(int length, PIGenerator::AlgSearchingDirection direction)
+{
+    if(length<=1)
+        return vector<int>();
+    vector<int> to_return(0, length);
+    int item, iteration_start, iteration_step, iteration_finish;
+    if(direction==lesser_to_greater)
+    {
+        item = 0;
+        iteration_start = 0;
+        iteration_step = 1;
+        iteration_finish = length - 1;
+        to_return[length - 1] = INT_MAX;
+    }
+    else if(direction==greater_to_lesser)
+    {
+        item = INT_MAX;
+        iteration_start = length - 1;
+        iteration_step = -1;
+        iteration_finish = 1;
+        to_return[0] = 0;
+        to_return[1] = 1;
+    }
+    else
+        return vector<int>();
+    for(int i = iteration_start; i != iteration_finish; i+=iteration_step)
+    {
+        to_return[i] = item;
+        item += iteration_step;
+    }
+}

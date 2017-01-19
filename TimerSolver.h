@@ -1,4 +1,6 @@
-#pragma once
+#ifndef TIMERSOLVER_H
+#define TIMERSOLVER_H
+
 #include "Solver.h"
 #include <utility>
 #include <chrono>
@@ -17,3 +19,5 @@
     virtual bool solve(std::vector<int>& arg);
     virtual std::list<double> extractTimeRecords();
  };
+
+#endif

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SOLVER_H
+#define SOLVER_H
+
 #include <vector>
 #include <list>
 
@@ -15,3 +17,5 @@ class Solver
     virtual std::list<double> extractTimeRecords();
     void setAlg(bool (*a)(std::vector<int>&));
 };
+
+#endif
