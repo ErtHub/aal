@@ -129,4 +129,5 @@ vector<int> PIGenerator::createExtremeCase(int length, PIGenerator::AlgSearching
         to_return[i] = item;
         item += iteration_step;
     }
+    return to_return;
 }

@@ -8,6 +8,16 @@
 
 namespace
 {
+unsigned long long intPow(int base, int exp)
+{
+    int result = 1;
+    for(int i=0; i<exp; ++i)
+    {
+        result*=base;
+    }
+    return result;
+}
+//--------------------------------------------------------------------------------------------------------------------------------
 bool recursiveCheck (std::vector<int>& stones, int target, int step_to_target, unsigned long long& range)
 {
 	if(target<0 || step_to_target<0) return false;
@@ -123,5 +133,6 @@ bool recurMemSearch(std::vector<int>& stones)
 }//end of namespace
 
 std::map<char, bool(*)(std::vector<int>&)> algs={{'D', &revSearch}, {'I', &iterMemSearch}, {'R', &recurMemSearch}};
+std::map<char, unsigned long long(*)(int)> asymptotics={{'D', [](int n){return intPow(3, n)}}, {'I', [](int n){return intPow(n, 2)}}, {'R', [](int n){return intPow(n, 2)}}}
 
 #endif

@@ -14,4 +14,7 @@ void Solver::setAlg(bool (*a)(vector<int>&))
     this->alg=a;
 }
 
-list<double> Solver::extractTimeRecords() {}
+list<double> Solver::extractTimeRecords()
+{
+    return list<double>();
+}

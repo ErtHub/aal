@@ -1,5 +1,5 @@
 - Czy mierzyc czasy po srednich czasach wykonania dla kazdej dlugosci instancji problemu, czy po maksymalnych? *tak
-- Czy generowac oddzielnie ekstremalne instancje problemu?
+- Czy generowac oddzielnie ekstremalne instancje problemu?//
 - Bez tajemnic uzytkowych - co to znaczy?
 - Jak zrealizowac wykresy? *odchylenie standardowe
 - Czy mierzyc w milisekundach? *duże przypadkiem
