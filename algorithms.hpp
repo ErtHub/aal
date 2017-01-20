@@ -143,7 +143,7 @@ class AlgHolder
     static std::map<char, AlgSearchingDirection> directions;
 };
 std::map<char, bool(*)(std::vector<int>&)> AlgHolder::algs={{'D', &revSearch}, {'I', &iterMemSearch}, {'R', &recurMemSearch}};
-std::map<char, unsigned long long(*)(int)> AlgHolder::asymptotics={{'D', [](int n){return intPow(3, n);}}, {'I', [](int n){return intPow(n, 2);}}, {'R', [](int n){return intPow(n, 2);}}};
+std::map<char, unsigned long long(*)(int)> AlgHolder::asymptotics={{'D', [](int n){return n*intPow(3, n);}}, {'I', [](int n){return intPow(n, 2);}}, {'R', [](int n){return intPow(n, 2);}}};
 std::map<char, AlgSearchingDirection> AlgHolder::directions={{'D', greater_to_lesser}, {'I', lesser_to_greater}, {'R', lesser_to_greater}};
 
 #endif
