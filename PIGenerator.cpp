@@ -99,7 +99,7 @@ vector<int> PIGenerator::generatePI(bool solution, int length)
     return to_return;
 }
 
-vector<int> PIGenerator::createExtremeCase(int length, PIGenerator::AlgSearchingDirection direction)
+vector<int> PIGenerator::createExtremeCase(int length, AlgSearchingDirection direction)
 {
     if(length<=1)
         return vector<int>();

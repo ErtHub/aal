@@ -6,14 +6,14 @@
 #include <iostream>
 #include <climits>
 
+typedef enum AlgSearchingDirection_
+{
+    lesser_to_greater = 1,
+    greater_to_lesser = 2
+} AlgSearchingDirection;
+
 class PIGenerator
 {
-    typedef enum AlgSearchingDirection_
-    {
-        lesser_to_greater = 1,
-        greater_to_lesser = 2
-    } AlgSearchingDirection;
-
     private:
     int sensitivity, multiplier;
 
