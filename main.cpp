@@ -16,7 +16,7 @@ namespace
 {
     const int TABLE_WIDTH = 20;
 
-    void printTable(ostream& os, map<int, double>& data, double c_factor, char algKey)
+    void printTable(ostream& os, map<int, double>& data, long double c_factor, char algKey)
     {
         os << setw(TABLE_WIDTH) << setfill(' ') << "n" << setw(TABLE_WIDTH) << setfill(' ') << "t(n)[ms]" << setw(TABLE_WIDTH) << setfill(' ') << "q(n)" << endl;
         for(auto i = data.begin(); i!=data.end(); ++i)
@@ -98,7 +98,7 @@ int main(int argc, char* argv[])
 
     for (int i=1; i<argc; ++i)
     {
-        if(/*argv[i][0]=='-' && argv[i][1]=='m'*/string(argv[i])=="-t" || string(argv[i])=="--timer")
+        if(string(argv[i])=="-t" || string(argv[i])=="--timer")
             timerIsOn = true;
         else if(string(argv[i])=="-g" || string(argv[i])=="--generate-args" || string(argv[i])=="-gX" || string(argv[i])=="--generate-extreme")
         {
@@ -122,25 +122,6 @@ int main(int argc, char* argv[])
         }
         else if(argv[i][0]=='-' && argv[i][1]=='a')
             algKey=argv[i][2];
-        /*{
-            switch(argv[i][2])
-            {
-                case 'S':
-                cout << "Hi, I'm the stdin execution!" << endl;
-                break;
-
-                case 'G':
-                cout << "Hi, I'm the PIG execution!" << endl;
-                break;
-
-                case 'T':
-                cout << "Hi, I'm the timer experiment execution!" << endl;
-                break;
-
-                default:
-                cout << "Nieznany argument \"" << argv[i] << "\"" << endl;
-            }
-        }*/
         else
         {
             cout << "Unknown argument \"" << argv[i] << "\"" << endl;
@@ -194,14 +175,6 @@ int main(int argc, char* argv[])
     if(timerIsOn)
         timeMeasurements = solver->extractTimeRecords();
 
-    /*for(auto i:answers)
-    {
-        cout << i.first << ": ";
-        for(auto j:i.second)
-            cout << j << " ";
-        cout << endl;
-    }*/
-
     auto inputItr = inputs.begin();
     auto answerItr = answers.begin();
     auto shouldBeItr = shouldBes.begin();
@@ -222,13 +195,13 @@ int main(int argc, char* argv[])
         cout << "\n" << endl;
     }
 
-    if(timerIsOn)
+    if(timerIsOn && pigIsOn)
     {
         map<int, double> meanSolveTimes = calcMeanTimes(inputs, timeMeasurements);
         map<int, double> maxSolveTimes = calcMaxTimes(inputs, timeMeasurements);
         int med = findMed(pigArg[0], pigArg[1], pigArg[2]);
-        double c_factor_mean = meanSolveTimes[med]/(AlgHolder::asymptotics[algKey])(med);
-        double c_factor_max = maxSolveTimes[med]/(AlgHolder::asymptotics[algKey])(med);
+        long double c_factor_mean = meanSolveTimes[med]/(AlgHolder::asymptotics[algKey])(med);
+        long double c_factor_max = maxSolveTimes[med]/(AlgHolder::asymptotics[algKey])(med);
 
         cout << "Mean execution times for " << algKey << " algorithm:" << endl;
         printTable(cout, meanSolveTimes, c_factor_mean, algKey);

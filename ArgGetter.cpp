@@ -14,7 +14,7 @@ list<vector<int>> ArgGetter::getArgs(istream& is)
     {
         if(str.empty())
             break;
-        strstr.str(str); //this is my favourite line
+        strstr.str(str);
         while(strstr >> number)
         {
             to_push.push_back(number);

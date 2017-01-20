@@ -108,13 +108,15 @@ bool iterMemSearch(std::vector<int>& stones)
 
 //---------------------------------------------------------------------------------------------------------------------------------------------------
 
-bool recurMemSearch(std::vector<int>& stones, int pos, int k, std::unordered_map<int, bool>& memory) {
+bool recurMemSearch(std::vector<int>& stones, int pos, int k, std::unordered_map<int, bool>& memory)
+{
     int key = pos | k << 11;
 
     if (memory.count(key) > 0)
         return memory[key];
 
-    for (int i = pos + 1; i < stones.size(); i++) {
+    for (int i = pos + 1; i < stones.size(); i++)
+    {
         int gap = stones[i] - stones[pos];
         if (gap < k - 1)
             continue;

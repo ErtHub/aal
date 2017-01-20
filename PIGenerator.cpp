@@ -17,22 +17,20 @@ int PIGenerator::calcDestiny(vector<int> past)
     leap_counters[1]=1;
     for(int i=1; i<past.size(); ++i)
     {
-        if(visited[i])
+        if(!visited[i])
+            continue;
+        for(int j=i+1; j<past.size() && past[j]<=past[i]+leap_counters[i]+1; ++j)
         {
-            for(int j=i+1; j<past.size() && past[j]<=past[i]+leap_counters[i]+1; ++j)
-            {
-                if(past[j]>=past[i]+leap_counters[i]-1 && !visited[j])
-                {
-                    visited[j]=true;
-                    leap_counters[j]=past[j]-past[i];
-                    if(j==past.size()-1)
-                        return past[j]+leap_counters[j]+2;
-                    last_recorded = j;
-                }
-            }
+            if(past[j]<past[i]+leap_counters[i]-1 || visited[j])
+                continue;
+            visited[j]=true;
+            leap_counters[j]=past[j]-past[i];
+            if(j==past.size()-1)
+                return past[j]+leap_counters[j]+2;
+            last_recorded = j;
         }
     }
-    return past[past.size()-1]+leap_counters[last_recorded]+2;
+    return past[past.size()-1]+leap_counters[last_recorded]+2+(past[past.size()-1]-past[last_recorded]);
 }
 
 vector<int> PIGenerator::generatePI(bool solution, int length)
@@ -59,7 +57,6 @@ vector<int> PIGenerator::generatePI(bool solution, int length)
     {
         uniform_int_distribution<int> uni(1, length-1);
         destiny=uni(rng);
-        //cout << destiny << endl;
     }
 
     int last_leap=0;
@@ -73,22 +70,17 @@ vector<int> PIGenerator::generatePI(bool solution, int length)
         {
             to_return.push_back(calcDestiny(to_return));
             last_pos=i;
+            ++last_leap;
             continue;
         }
         for(int j=dist_table.size(); j<last_leap+1; ++j)
             dist_table.push_back(sensitivity+(multiplier*j));
-        //for(auto j:dist_table)
-            //cout << j << " ";
-        //cout << endl;
         int border = ((i==length-1) ? (last_leap - 2) : (to_return[i-1]-to_return[last_pos]));
         if(border<0)
             border=0;
 
         discrete_distribution<int> discr(dist_table.begin()+border, dist_table.begin()+last_leap+1);
-        //cout << to_return[i-1]-to_return[last_pos] << endl;
-        //cout << last_leap+1 << endl;
         int leap = discr(rng) + border + 1;
-        //cout << leap << endl;
         to_return.push_back(to_return[last_pos]+leap);
         if(leap>=last_leap-1 && leap<=last_leap+1)
         {
