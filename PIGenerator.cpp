@@ -103,7 +103,7 @@ vector<int> PIGenerator::createExtremeCase(int length, AlgSearchingDirection dir
 {
     if(length<=1)
         return vector<int>();
-    vector<int> to_return(0, length);
+    vector<int> to_return(length, 0);
     int item, iteration_start, iteration_step, iteration_finish;
     if(direction==lesser_to_greater)
     {

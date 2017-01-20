@@ -85,7 +85,7 @@ namespace
 
 int main(int argc, char* argv[])
 {
-    vector<int> pigArg = {20, 1, 1, 3};
+    vector<int> pigArg = {100, 1, 1, 1};
     list<vector<int>> inputs;
     Solver *solver;
     list<bool> answers;
@@ -116,7 +116,7 @@ int main(int argc, char* argv[])
             i+=j;
             if(pigArg[0]<pigArg[1])
             {
-                cout << "Error: Proble Instance Generation arguments are inconsistent." << endl;
+                cout << "Error: Problem Instance Generation arguments are inconsistent." << endl;
                 return INVALID_PARAM;
             }
         }
@@ -207,14 +207,19 @@ int main(int argc, char* argv[])
     auto shouldBeItr = shouldBes.begin();
     auto timeRecordItr = timeMeasurements.begin();
 
-    while(inputItr!=inputs.end() && answerItr!=answers.end() && shouldBeItr!=shouldBes.end() && timeRecordItr!=timeMeasurements.end())
+    while(inputItr!=inputs.end() && answerItr!=answers.end() && (shouldBeItr!=shouldBes.end() || !pigIsOn) && (timeRecordItr!=timeMeasurements.end() || !timerIsOn))
     {
         cout << "Case:" <<endl;
         for(int i=0; i<inputItr->size(); ++i)
             cout << (*inputItr)[i] << " ";
         cout << endl;
         ++inputItr;
-        cout << "Answer: " << *(answerItr++) << ", Should be: " << *(shouldBeItr++) << ", Execution time: " << *(timeRecordItr++) << " ms \n" << endl;
+        cout << "Answer: " << *(answerItr++);
+        if(pigIsOn)
+            cout << ", Should be: " << *(shouldBeItr++);
+        if(timerIsOn)
+            cout << ", Execution time: " << *(timeRecordItr++) << " ms";
+        cout << "\n" << endl;
     }
 
     if(timerIsOn)
@@ -222,13 +227,13 @@ int main(int argc, char* argv[])
         map<int, double> meanSolveTimes = calcMeanTimes(inputs, timeMeasurements);
         map<int, double> maxSolveTimes = calcMaxTimes(inputs, timeMeasurements);
         int med = findMed(pigArg[0], pigArg[1], pigArg[2]);
-        double c_factor_mean = (AlgHolder::asymptotics[algKey])(med)/meanSolveTimes[med];
-        double c_factor_max = (AlgHolder::asymptotics[algKey])(med)/maxSolveTimes[med];
+        double c_factor_mean = meanSolveTimes[med]/(AlgHolder::asymptotics[algKey])(med);
+        double c_factor_max = maxSolveTimes[med]/(AlgHolder::asymptotics[algKey])(med);
 
         cout << "Mean execution times for " << algKey << " algorithm:" << endl;
         printTable(cout, meanSolveTimes, c_factor_mean, algKey);
         cout << endl;
-        cout << "Mean execution times for " << algKey << " algorithm:" << endl;
+        cout << "Max execution times for " << algKey << " algorithm:" << endl;
         printTable(cout, maxSolveTimes, c_factor_max, algKey);
     }
 
