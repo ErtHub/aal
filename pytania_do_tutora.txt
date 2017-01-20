@@ -1,3 +1,0 @@
-- Bez tajemnic uzytkowych - co to znaczy?
-- Jak zrealizowac wykresy? *odchylenie standardowe
-- Jak sporzadzic dokumentacje? *opis problemu, opis algorytmu, opis programu, ocena złożoności, generacja przypadków testowych wykresy, wnioski

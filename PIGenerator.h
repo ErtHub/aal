@@ -15,13 +15,13 @@ typedef enum AlgSearchingDirection_
 class PIGenerator
 {
     private:
-    int sensitivity, multiplier;
+    int distribution_broadness, multiplier;
 
-    int calcDestiny(std::vector<int> past);
+    int calcDestiny(std::vector<int>& past);
 
     public:
-    PIGenerator() : sensitivity(1), multiplier(1) {};
-    PIGenerator(int sensitivity_, int multiplier_=1) : sensitivity(sensitivity_), multiplier(multiplier_) {};
+    PIGenerator() : distribution_broadness(1), multiplier(1) {};
+    PIGenerator(int distribution_broadness_, int multiplier_=1) : distribution_broadness(distribution_broadness_), multiplier(multiplier_) {};
     std::vector<int> generatePI(bool solution, int length);
     std::vector<int> createExtremeCase(int length, AlgSearchingDirection direction);
 };

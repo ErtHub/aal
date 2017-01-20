@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int PIGenerator::calcDestiny(vector<int> past)
+int PIGenerator::calcDestiny(vector<int>& past)
 {
     vector<bool> visited(past.size(), false);
     vector<int> leap_counters(past.size(), 0);
@@ -74,7 +74,7 @@ vector<int> PIGenerator::generatePI(bool solution, int length)
             continue;
         }
         for(int j=dist_table.size(); j<last_leap+1; ++j)
-            dist_table.push_back(sensitivity+(multiplier*j));
+            dist_table.push_back(distribution_broadness+(multiplier*j));
         int border = ((i==length-1) ? (last_leap - 2) : (to_return[i-1]-to_return[last_pos]));
         if(border<0)
             border=0;

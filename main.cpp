@@ -16,7 +16,7 @@ namespace
 {
     const int TABLE_WIDTH = 20;
 
-    void printTable(ostream& os, map<int, double>& data, long double c_factor, char algKey)
+    void printTable(ostream& os, const map<int, double>& data, long double c_factor, char algKey)
     {
         os << setw(TABLE_WIDTH) << setfill(' ') << "n" << setw(TABLE_WIDTH) << setfill(' ') << "t(n)[ms]" << setw(TABLE_WIDTH) << setfill(' ') << "q(n)" << endl;
         for(auto i = data.begin(); i!=data.end(); ++i)
